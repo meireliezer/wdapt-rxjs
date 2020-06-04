@@ -5,8 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeroesComponent } from './heroes/heroes.component';
 
 const routes: Routes = [
-  { path: 'heroes', component: HeroesComponent },
-  { path: 'favorites', loadChildren: () => import('./features/favorite/favorite.module').then(m => m.FavoriteModule) }
+  { 
+    path: 'heroes', 
+    component: HeroesComponent 
+  },
+  { 
+    path: 'favorites', 
+    loadChildren: () => import('./features/favorite/favorite.module').then(m => m.FavoriteModule) 
+  }
 ];
 
 @NgModule({

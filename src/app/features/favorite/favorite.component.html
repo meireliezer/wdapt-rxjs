@@ -7,9 +7,16 @@
         <div class="favorites-toolbar__actions">
             <button class="btn">Grid</button>
             <button class="btn">Tiles</button>
-            <button class="btn">Add</button>
-            
+            <button class="btn">Add</button>     
+            <a routerLink="./grid">Grid</a>
+-
+            <a routerLink="./tiles">Tiles</a>       
         </div>
+    </div>
+    <div class="favorites-main-content">
+
+        <router-outlet></router-outlet>
+
     </div>
 
 </div>

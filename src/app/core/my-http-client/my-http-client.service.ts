@@ -50,7 +50,6 @@ export class MyHttpClientService {
       }
     }
 
-
     return of(data).pipe(      
       tap (val => {
         console.log('get(api/favorites)', val)

@@ -6,7 +6,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
-  { path: 'favorite', loadChildren: () => import('./features/favorite/favorite.module').then(m => m.FavoriteModule) }
+  { path: 'favorites', loadChildren: () => import('./features/favorite/favorite.module').then(m => m.FavoriteModule) }
 ];
 
 @NgModule({

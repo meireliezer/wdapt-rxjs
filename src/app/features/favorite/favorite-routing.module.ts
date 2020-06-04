@@ -11,6 +11,10 @@ const routes: Routes = [
     component: FavoriteComponent,
     children: [
       { 
+        path: '', 
+        redirectTo: 'grid'
+      },
+      { 
         path: 'grid', 
         component: GridComponent
       },

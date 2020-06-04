@@ -1,15 +1,16 @@
 
-<div>
+<div class="container-fluid d-flex main">
+    <div class="main-nav">
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" [routerLink]="'/favorites'"  routerLinkActive="active">Favorite website</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="'/heroes'" routerLinkActive="active">Actions log</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <router-outlet></router-outlet>
+    </div>
 
 </div>
-
-<div class="nav">
-    <ul>
-        <li><a [routerLink]="'/favorites'"  routerLinkActive="active-link">Favorite website</a></li>
-        <li><a [routerLink]="'/heroes'" routerLinkActive="active-link">Actions log</a></li>
-    </ul>
-</div>
-<router-outlet></router-outlet>
 
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from './services/favorites.service';
 import { Observable } from 'rxjs';
 import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-favorite',
@@ -10,8 +11,10 @@ import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 })
 export class FavoriteComponent implements OnInit {
 
+  public faSearchIcon = faSearch;
+
   constructor(private favoritesService: FavoritesService) {
-   }
+  }
 
   ngOnInit() {  
   }

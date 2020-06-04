@@ -2,8 +2,8 @@
 <div class="container-fluid d-flex main">
     <div class="main-nav">
         <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link" [routerLink]="'/favorites'"  routerLinkActive="active">Favorite website</a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="'/heroes'" routerLinkActive="active">Actions log</a></li>
+            <li class="nav-item" [ngClass]="{'active': isActive('grid')}"><a class="nav-link" [routerLink]="'/favorites'"  routerLinkActive="active">Favorite website</a></li>
+            <li class="nav-item" [ngClass]="{'active': isActive('heroes')}"><a class="nav-link" [routerLink]="'/heroes'" routerLinkActive="active">Actions log</a></li>
         </ul>
     </div>
     <div class="main-content">

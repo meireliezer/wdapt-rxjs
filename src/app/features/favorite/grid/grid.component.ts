@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
+import { Observable } from 'rxjs';
+import { FavoritesService } from '../services/favorites.service';
+import { tap, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-grid',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GridComponent implements OnInit {
 
-  constructor() { }
+  public favorites$: Observable<IFavoriteWebSite[]>;
+  
+  constructor(private favoritesService: FavoritesService) {
+    this.favorites$ = this.favoritesService.favorites$;
+   }
 
   ngOnInit() {
+    this.favoritesService.loadFavorites();   
   }
 
 }

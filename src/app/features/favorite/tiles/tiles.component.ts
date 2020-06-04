@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
+import { FavoritesService } from '../services/favorites.service';
 
 @Component({
   selector: 'app-tiles',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TilesComponent implements OnInit {
 
-  constructor() { }
+  public favorites$: Observable<IFavoriteWebSite[]>;
+
+  constructor(private favoritesService: FavoritesService) {
+    this.favorites$ = this.favoritesService.favorites$;
+   }
 
   ngOnInit() {
+    this.favoritesService.loadFavorites();   
   }
 
 }

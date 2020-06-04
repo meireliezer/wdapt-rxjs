@@ -10,14 +10,10 @@ import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 })
 export class FavoriteComponent implements OnInit {
 
-  public favorites$: Observable<IFavoriteWebSite[]>;
-
   constructor(private favoritesService: FavoritesService) {
-    this.favorites$ = this.favoritesService.favorites$;
    }
 
-  ngOnInit() {
-    this.favoritesService.loadFavorites();   
+  ngOnInit() {  
   }
 
 }

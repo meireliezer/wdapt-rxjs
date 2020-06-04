@@ -1,1 +1,17 @@
 <p>tiles works!</p>
+<ng-container *ngFor="let favorite of (favorites$|async)">
+    <div class="card text-center" style="width: 18rem;">
+        <img src="{{favorite.img}}" class="card-img-top" alt="">        
+        <div class="card-body">
+            <h5 class="card-title">{{favorite.name}}</h5>
+            <p class="card-text">{{favorite.url}}</p>
+        </div>
+        <div class="card-footer">
+            <a href="#" class="btn btn-primary">Delete</a>
+            <a href="#" class="btn btn-primary">Edit</a>    
+        </div>
+
+    </div>
+
+
+</ng-container >

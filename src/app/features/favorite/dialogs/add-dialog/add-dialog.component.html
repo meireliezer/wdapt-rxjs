@@ -1,16 +1,19 @@
-<div class="me-dialog font-weight-bold">
+<form [formGroup]="form" class="me-dialog font-weight-bold">
     <div class="me-dialog-header">
         Add a new website
     </div>
     <div class="me-dialog-content">
-        <label for="websitename">Website name</label>
-        <input type="text" id="websitename">
-        <label for="url">URL</label>
-        <input type="text" id="url">
+        <label for="websitename" >Website name <span class="asterisk" *ngIf="form.controls.website.errors?.required">*</span></label> 
+        <input type="text" id="websitename" formControlName="website">
+        <label for="url">URL  <span class="asterisk" *ngIf="form.controls.url.errors?.required">*</span></label>
+        <input type="text" id="url" formControlName="url">
     </div>
     <div class="me-dialog-footer">
-        <button class="btn btn-outline-dark font-weight-bold">Add website</button>
-        <button class="btn btn-outline-dark font-weight-bold">Cancel</button>
+        <button class="btn btn-outline-dark font-weight-bold" 
+        [disabled]="!form.valid"
+        (click)="onSubmit()"
+        >Add website</button>
+        <button class="btn btn-outline-dark font-weight-bold"
+        (click)="onCancel()">Cancel</button>
     </div>
-
-</div>
+</form>

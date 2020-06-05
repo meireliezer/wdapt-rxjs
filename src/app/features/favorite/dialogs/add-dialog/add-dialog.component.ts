@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-dialog',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddDialogComponent implements OnInit {
 
-  constructor() { }
+  public form: FormGroup;
+  
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      website: new FormControl('', [Validators.required]),
+      url: new FormControl('', [Validators.required])
+    });
+  }
+
+
+  public onCancel(){
+    console.log('cancel')
+  }
+
+  public onSubmit(){
+    console.log('submit');
   }
 
 }

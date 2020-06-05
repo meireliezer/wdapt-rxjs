@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { HeroesComponent } from './heroes/heroes.component';
   imports: [
     BrowserModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],

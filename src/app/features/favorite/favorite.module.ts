@@ -7,13 +7,15 @@ import { FavoriteComponent } from './favorite.component';
 import { GridComponent } from './grid/grid.component';
 import { TilesComponent } from './tiles/tiles.component';
 import { FavoritesService } from './services/favorites.service';
+import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
 
 
 @NgModule({
   declarations: [
     FavoriteComponent,
     GridComponent,
-    TilesComponent
+    TilesComponent,
+    AddDialogComponent
   ],
   imports: [
     CommonModule,

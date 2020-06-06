@@ -24,17 +24,12 @@ export class FavoriteComponent implements OnInit {
               private dialogService: DialogService) {
   }
 
-  ngOnInit() {  
+  ngOnInit() {      
   }
 
   public addWebsite(){
 
-    let config: IDialogConfig;
-    config = {
-      output: {
-        website: true
-      }
-    }
+
     this.dialogService.open(AddDialogComponent).subscribe( val => {
 
       if(val === null){

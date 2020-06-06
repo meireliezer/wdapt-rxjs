@@ -18,7 +18,7 @@ export class GridComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.favoritesService.loadFavorites();   
+    
   }
 
 

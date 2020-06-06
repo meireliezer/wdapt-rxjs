@@ -17,7 +17,6 @@ export class TilesComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.favoritesService.loadFavorites();   
   }
 
 }

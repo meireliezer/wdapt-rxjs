@@ -15,17 +15,12 @@ export class FavoritesService {
   constructor(private http: MyHttpClientService) { 
     this._subject = new BehaviorSubject<IFavoriteWebSite[]>([]);
     this.favorites$ = this._subject.asObservable();
+
+    // Initialization
+    this.loadFavorites();
   }
 
 
-  public loadFavorites(): void{
-
-    this.http.get('api/favorites').pipe(                  
-      map( res => res['payload']),
-      tap( res => this._subject.next(res)),
-    )
-    .subscribe()
-  }
 
   public save(body): Observable<any> {
     return this.http.post('api/favorites', body).pipe(
@@ -36,4 +31,15 @@ export class FavoritesService {
       })
     )  
   }
+
+
+  private loadFavorites(): void{
+
+    this.http.get('api/favorites').pipe(                  
+      map( res => res['payload']),
+      tap( res => this._subject.next(res)),
+    )
+    .subscribe()
+  }
+
 }

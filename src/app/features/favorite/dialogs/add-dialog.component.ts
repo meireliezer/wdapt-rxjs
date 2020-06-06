@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { IDialog } from 'src/app/model/dialog.interface';
 
 @Component({
   selector: 'app-add-dialog',
   templateUrl: './add-dialog.component.html',
   styleUrls: ['./add-dialog.component.css']
 })
-export class AddDialogComponent implements OnInit {
+export class AddDialogComponent implements OnInit, IDialog {
 
   public form: FormGroup;
   public readonly onOk$: Observable<any>;
@@ -35,10 +36,12 @@ export class AddDialogComponent implements OnInit {
 
   public onCancel(){
     console.log('cancel')
+    this._onCancel.next();
   }
 
   public onSubmit(){
     console.log('submit');
+    this._onOk.next(this.form.value);
   }
 
 }

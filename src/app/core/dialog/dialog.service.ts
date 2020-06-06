@@ -1,46 +1,58 @@
 import { Injectable,  ViewContainerRef, ComponentFactoryResolver, Injector } from '@angular/core';
+import { IDialogConfig } from 'src/app/features/favorite/favorite.component';
+import { IDialog } from 'src/app/model/dialog.interface';
+import { Observable, Subject } from 'rxjs';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService {
 
-  private active
-  private containerRef:ViewContainerRef;
+  
+
+  private _active
+  private _containerRef:ViewContainerRef;
+  private _result: Subject<any>;
+  
 
   constructor(private cfr: ComponentFactoryResolver,
               private injector: Injector) {
   
-                this.active = false;
-
+                this._active = false;
+                this._result = new Subject();                                
   }
 
   public setDialogContainerRef(containerRef: ViewContainerRef){
-    this.containerRef = containerRef;
+    this._containerRef = containerRef;
     console.log('setDialogContainerRef', containerRef);
   }
 
-  public open(comp: any){
+  public open(comp: any): Observable<any>{
 
-    if(this.active){
+    if(this._active){
       return;
     }
 
     let componentFactory = this.cfr.resolveComponentFactory(comp)
     let component = componentFactory.create(this.injector);
     console.log(component);
-    this.containerRef.insert(component.hostView);
-    this.active = true;
+    (<IDialog>component.instance).onCancel$.subscribe( ()=> this._result.next(null) );
+    (<IDialog>component.instance).onOk$.subscribe( val => this._result.next( val ));;
+    this._containerRef.insert(component.hostView);
+    this._active = true;
+
+    return this._result.asObservable();
 
   }
 
 
   public close(){
-    if(this.active === false){
+    if(this._active === false){
       return;
     }
-    this.containerRef.clear();
-    this.active = false;
+    this._containerRef.clear();
+    this._active = false;
   }
 
 

@@ -29,8 +29,22 @@ export class FavoriteComponent implements OnInit {
 
   public addWebsite(){
 
-    let config
-    this.dialogService.open(AddDialogComponent)
+    let config: IDialogConfig;
+    config = {
+      output: {
+        website: true
+      }
+    }
+    this.dialogService.open(AddDialogComponent).subscribe( val => {
+
+      if(val === null){
+        this.dialogService.close();
+      } else {
+        this.favoritesService.save(val);
+        setTimeout(()=> this.dialogService.close(), 3000);
+      }
+
+    })
 
   }
 

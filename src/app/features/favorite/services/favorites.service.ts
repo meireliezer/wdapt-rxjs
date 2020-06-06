@@ -26,4 +26,9 @@ export class FavoritesService {
     )
     .subscribe()
   }
+
+  public save(val){
+    console.log(val);
+
+  }
 }

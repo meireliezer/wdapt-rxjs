@@ -3,6 +3,7 @@ import { IDialogConfig } from 'src/app/features/favorite/favorite.component';
 import { IDialog } from 'src/app/model/dialog.interface';
 import { Observable, Subject } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { take } from 'rxjs/internal/operators/take';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,9 @@ export class DialogService {
     this._containerRef.insert(component.hostView);
     this._active = true;
 
-    return this._result.asObservable();
+    return this._result.asObservable().pipe(
+      take(1)
+    );
 
   }
 

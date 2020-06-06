@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 import { Observable, of } from 'rxjs';
-import { delay, tap } from 'rxjs/operators'
+import { delay, tap, take } from 'rxjs/operators'
 
 const FAVORITE_WEBSITES:IFavoriteWebSite[] = [
   {
@@ -52,7 +52,8 @@ export class MyHttpClientService {
       }
     }
 
-    return of(data).pipe(      
+    return of(data).pipe(    
+      take(1),  
       tap (val => {
         console.log('get(api/favorites)', val)
       })
@@ -74,7 +75,9 @@ export class MyHttpClientService {
     }
 
     return of(data).pipe(
+      take(1),
       delay(Math.random()* 3000)
+      
     );
   }
 

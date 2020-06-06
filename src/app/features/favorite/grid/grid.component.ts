@@ -21,4 +21,8 @@ export class GridComponent implements OnInit {
     this.favoritesService.loadFavorites();   
   }
 
+
+  public trackByFn(favorite: IFavoriteWebSite){
+    return favorite.id;
+  }
 }

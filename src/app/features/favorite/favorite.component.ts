@@ -26,7 +26,7 @@ export class FavoriteComponent implements OnInit {
   }
 
   ngOnInit() {   
-    setTimeout(()=>this.dialogService.open(EditDialogComponent), 1000);
+   // setTimeout(()=>this.dialogService.open(EditDialogComponent), 1000);
     
   }
 

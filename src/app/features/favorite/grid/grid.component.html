@@ -9,7 +9,10 @@
         <tr *ngFor="let favorite of (favorites$|async); trackBy: trackByFn">           
             <td >{{favorite.name}}</td>
             <td >{{favorite.url}}</td>
-            <td>action</td>
+            <td class="float-toolbar">  
+                <button class="bt btn-outline-dark bt-sm"(click)="onEdit(favorite)">Edit</button>
+                <button class="bt btn-outline-dark bt-sm"(click)="onDelete(favorite)">Delete</button>
+            </td>
         </tr>
     </tbody>
 </table>

@@ -3,6 +3,8 @@ import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 import { Observable } from 'rxjs';
 import { FavoritesService } from '../services/favorites.service';
 import { tap, shareReplay } from 'rxjs/operators';
+import { DialogService } from 'src/app/core/dialog/dialog.service';
+import { EditDialogComponent } from '../dialogs/edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-grid',
@@ -13,7 +15,8 @@ export class GridComponent implements OnInit {
 
   public favorites$: Observable<IFavoriteWebSite[]>;
   
-  constructor(private favoritesService: FavoritesService) {
+  constructor(private favoritesService: FavoritesService,
+              private dialogService:DialogService) {
     this.favorites$ = this.favoritesService.favorites$;
    }
 
@@ -21,6 +24,24 @@ export class GridComponent implements OnInit {
     
   }
 
+  public onEdit(favorite:IFavoriteWebSite){
+    
+    console.log(favorite);
+    this.dialogService.open(EditDialogComponent)
+    .subscribe( val => {
+      if(val===null){
+        this.dialogService.close();
+      } else {
+        // Update data
+        console.log(val);
+        this.dialogService.close();
+      }
+    })
+  }
+
+  public onDelete(favorite:IFavoriteWebSite){
+    console.log(favorite);
+  }
 
   public trackByFn(favorite: IFavoriteWebSite){
     return favorite.id;

@@ -35,4 +35,12 @@ export class EditDialogComponent implements OnInit, IDialog {
 
   }
 
+  public onCancel(){
+    this._onCancel.next();
+  }
+
+  public onSubmit(){    
+    this._onOk.next(this.form.value);
+  }
+
 }

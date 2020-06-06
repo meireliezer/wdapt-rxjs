@@ -35,12 +35,10 @@ export class AddDialogComponent implements OnInit, IDialog {
 
 
   public onCancel(){
-    console.log('cancel')
     this._onCancel.next();
   }
 
   public onSubmit(){
-    console.log('submit');
     this._onOk.next(this.form.value);
   }
 

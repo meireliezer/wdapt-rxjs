@@ -27,8 +27,13 @@ export class FavoritesService {
     .subscribe()
   }
 
-  public save(val){
-    console.log(val);
-
+  public save(body): Observable<any> {
+    return this.http.post('api/favorites', body).pipe(
+      tap( res => {
+        let list = [...this._subject.value];
+        list.push(res);
+        this._subject.next(list)
+      })
+    )  
   }
 }

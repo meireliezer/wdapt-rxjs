@@ -40,8 +40,14 @@ export class FavoriteComponent implements OnInit {
       if(val === null){
         this.dialogService.close();
       } else {
-        this.favoritesService.save(val);
-        setTimeout(()=> this.dialogService.close(), 3000);
+        this.favoritesService.save({
+                    name: val.website,
+                    url: val.url
+                  })
+        .subscribe( 
+          ()=> this.dialogService.close()
+          );
+
       }
 
     })

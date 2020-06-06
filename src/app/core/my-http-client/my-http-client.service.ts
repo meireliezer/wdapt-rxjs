@@ -29,6 +29,8 @@ const FAVORITE_WEBSITES:IFavoriteWebSite[] = [
     img: ''
   }
 ]
+let favoriteNextIndex = FAVORITE_WEBSITES.length + 1;
+
 
 
 
@@ -54,8 +56,24 @@ export class MyHttpClientService {
       tap (val => {
         console.log('get(api/favorites)', val)
       })
-    );
+    );    
+  }
 
+
+  public post(api:string, req:any): Observable<any> {
+    
+    let data:IFavoriteWebSite;
+    if(api === 'api/favorites'){
+      data = { ...req,
+              id: favoriteNextIndex,
+              img: ''
+       };
+       ++favoriteNextIndex;
+      
+      FAVORITE_WEBSITES.push(data); 
+    }
+
+    return of(data);
   }
 
 }

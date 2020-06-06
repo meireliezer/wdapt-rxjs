@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-add-dialog',
@@ -9,8 +10,20 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 export class AddDialogComponent implements OnInit {
 
   public form: FormGroup;
-  
-  constructor(private formBuilder: FormBuilder) { }
+  public readonly onOk$: Observable<any>;
+  public readonly onCancel$: Observable<any>;
+
+  private _onOk: Subject<any>;
+  private _onCancel: Subject<any>;
+    
+  constructor(private formBuilder: FormBuilder) {
+    this._onOk = new Subject();
+    this.onOk$ = this._onOk.asObservable();
+
+
+    this._onCancel = new Subject();
+    this.onCancel$ = this._onCancel.asObservable();
+   }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

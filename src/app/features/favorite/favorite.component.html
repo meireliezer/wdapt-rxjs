@@ -10,13 +10,15 @@
         <div class="favorites-toolbar__actions">
             <button type="button" class="btn btn-outline-dark btn-sm m-1" routerLink="./grid" >Grid</button>
             <button type="button" class="btn btn-outline-dark btn-sm m-1" routerLink="./tiles"  >Tiles</button>
-            <button type="button" class="btn btn-outline-dark btn-sm m-1">Add</button>      
+            <button type="button" class="btn btn-outline-dark btn-sm m-1"
+                (click)="addWebsite()"
+            >Add</button>      
         </div>
     </div>
     <div class="favorites-main-content">
-        <!-- <router-outlet></router-outlet> -->
+        <router-outlet></router-outlet>
     </div>
 
-    <app-add-dialog></app-add-dialog>
+
 
 </div>

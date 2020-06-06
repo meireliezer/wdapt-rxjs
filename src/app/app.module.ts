@@ -6,13 +6,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeroesComponent } from './heroes/heroes.component';
-
+import { AddDialogComponent } from './features/favorite/dialogs/add-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
-
+    AddDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +21,9 @@ import { HeroesComponent } from './heroes/heroes.component';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AddDialogComponent
+  ],
 })
 export class AppModule { }

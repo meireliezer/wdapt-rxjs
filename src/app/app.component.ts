@@ -1,20 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogService } from './core/dialog/dialog.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'wdap-rxjs';
-  faCoffee = faCoffee;
+export class AppComponent implements AfterViewInit {
+  
+  
+  public title = 'wdap-rxjs';  
+  public faCoffee = faCoffee;
+
+  @ViewChild('medialog', {static:true, read:ViewContainerRef})
+  dialogContainerRef: ViewContainerRef
+
+
 
   private activeSection: string;
 
-  constructor(private activeRoute: ActivatedRoute, 
-              private router: Router){  
+  constructor(private router: Router,
+              private dialogService:DialogService){  
+  }
+  ngAfterViewInit(): void {
+    this.dialogService.setDialogContainerRef(this.dialogContainerRef)
   }
 
 

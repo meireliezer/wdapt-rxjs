@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from './services/favorites.service';
-import { Observable } from 'rxjs';
-import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { DialogService } from 'src/app/core/dialog/dialog.service';
+import { AddDialogComponent } from './dialogs/add-dialog.component';
+
+
+export interface IDialogConfig {
+  input?: any;
+  output?: any;
+}
+
 
 @Component({
   selector: 'app-favorite',
@@ -13,10 +20,18 @@ export class FavoriteComponent implements OnInit {
 
   public faSearchIcon = faSearch;
 
-  constructor(private favoritesService: FavoritesService) {
+  constructor(private favoritesService: FavoritesService,
+              private dialogService: DialogService) {
   }
 
   ngOnInit() {  
+  }
+
+  public addWebsite(){
+
+    let config
+    this.dialogService.open(AddDialogComponent)
+
   }
 
 }

@@ -48,7 +48,7 @@ export class MyHttpClientService {
     let data  = {};
     if(api === 'api/favorites'){
       data = {
-        payload: FAVORITE_WEBSITES
+        payload: [...FAVORITE_WEBSITES]
       }
     }
 
@@ -73,7 +73,9 @@ export class MyHttpClientService {
       FAVORITE_WEBSITES.push(data); 
     }
 
-    return of(data);
+    return of(data).pipe(
+      delay(Math.random()* 3000)
+    );
   }
 
 }

@@ -27,14 +27,20 @@ export class GridComponent implements OnInit {
   public onEdit(favorite:IFavoriteWebSite){
     
     console.log(favorite);
-    this.dialogService.open(EditDialogComponent)
+    this.dialogService.open(EditDialogComponent, favorite)
     .subscribe( val => {
       if(val===null){
         this.dialogService.close();
-      } else {
-        // Update data
+      } else {        
         console.log(val);
-        this.dialogService.close();
+        this.favoritesService.update(favorite.id, {
+          name: val.website,
+          url: val.url
+        })
+        .subscribe( res => {
+          this.dialogService.close();
+        });
+        
       }
     })
   }

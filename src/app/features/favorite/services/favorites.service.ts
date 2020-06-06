@@ -4,6 +4,7 @@ import { tap, map, shareReplay } from 'rxjs/operators';
 
 import { MyHttpClientService } from 'src/app/core/my-http-client/my-http-client.service';
 import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
+import { isNgTemplate } from '@angular/compiler';
 
 
 @Injectable() 
@@ -30,6 +31,17 @@ export class FavoritesService {
         this._subject.next(list)
       })
     )  
+  }
+
+  public update(id:number, body:any):Observable<any> {
+    return this.http.put('api/favorites',id,  body).pipe(
+      tap( res => {
+        let list = [...this._subject.value];
+        let itemIdx = list.findIndex(item => item.id === id);
+        list[itemIdx] = res;
+        this._subject.next(list);
+      })
+    );
   }
 
 

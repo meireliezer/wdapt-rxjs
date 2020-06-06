@@ -81,4 +81,20 @@ export class MyHttpClientService {
     );
   }
 
+
+  public put(api:string, id: number, req:any): Observable<any>{
+
+    let data;
+    if(api === 'api/favorites'){
+      data = FAVORITE_WEBSITES.find( item => item.id === id);      
+      data = Object.assign({}, data, req);
+    }
+
+    
+    return of(data).pipe(
+      take(1),
+      delay(Math.random()*3000)
+    );
+  }
+
 }

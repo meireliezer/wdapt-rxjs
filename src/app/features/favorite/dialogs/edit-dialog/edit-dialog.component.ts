@@ -3,6 +3,7 @@ import { IDialog } from 'src/app/model/dialog.interface';
 import { Observable } from 'rxjs/internal/Observable';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subject } from 'rxjs/internal/Subject';
+import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -14,6 +15,8 @@ export class EditDialogComponent implements OnInit, IDialog {
   public form: FormGroup;
   public onOk$: Observable<any>;
   public onCancel$: Observable<any>;
+
+  public data:IFavoriteWebSite;
 
   private _onOk: Subject<any>;
   private _onCancel: Subject<any>;
@@ -29,8 +32,8 @@ export class EditDialogComponent implements OnInit, IDialog {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      website: new FormControl('', [Validators.required]),
-      url: new FormControl('', [Validators.required])
+      website: new FormControl(this.data.name, [Validators.required]),
+      url: new FormControl(this.data.url, [Validators.required])
     });
 
   }

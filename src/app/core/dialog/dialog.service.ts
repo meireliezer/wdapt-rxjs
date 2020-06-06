@@ -29,7 +29,7 @@ export class DialogService {
     console.log('setDialogContainerRef', containerRef);
   }
 
-  public open(comp: any): Observable<any>{
+  public open(comp: any, data?:any): Observable<any>{
 
     if(this._active){
       return;
@@ -37,9 +37,16 @@ export class DialogService {
 
     let componentFactory = this.cfr.resolveComponentFactory(comp)
     let component = componentFactory.create(this.injector);
-    console.log(component);
-    (<IDialog>component.instance).onCancel$.subscribe( ()=> this._result.next(null) );
-    (<IDialog>component.instance).onOk$.subscribe( val => this._result.next( val ));;
+    let componentDialog = (<IDialog>component.instance);
+
+    componentDialog.onCancel$.subscribe( ()=> this._result.next(null) );
+    componentDialog.onOk$.subscribe( val => this._result.next( val ));;
+
+    if(data){
+      componentDialog.data = data;
+    }
+
+    
     this._containerRef.insert(component.hostView);
     this._active = true;
 

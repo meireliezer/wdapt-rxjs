@@ -8,7 +8,6 @@ import { FavoriteComponent } from './favorite.component';
 import { GridComponent } from './grid/grid.component';
 import { TilesComponent } from './tiles/tiles.component';
 import { FavoritesService } from './services/favorites.service';
-import { AddDialogComponent } from 'src/app/features/favorite/dialogs/add-dialog.component';
 
 @NgModule({
   declarations: [

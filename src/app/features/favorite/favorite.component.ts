@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from './services/favorites.service';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { DialogService } from 'src/app/core/dialog/dialog.service';
-import { AddDialogComponent } from './dialogs/add-dialog.component';
+import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
 
 
 export interface IDialogConfig {

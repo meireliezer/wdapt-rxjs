@@ -10,6 +10,7 @@ import { AddDialogComponent } from './features/favorite/dialogs/add-dialog/add-d
 import { EditDialogComponent } from './features/favorite/dialogs/edit-dialog/edit-dialog.component';
 import { GeneralDialogComponent } from './share/general-dialog/general-dialog/general-dialog.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,7 @@ import { GeneralDialogComponent } from './share/general-dialog/general-dialog/ge
     BrowserModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

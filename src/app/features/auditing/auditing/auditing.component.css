@@ -1,0 +1,10 @@
+.auditing-main__toolbar {
+    display: flex;
+    align-items: center;    
+    margin-top: 1em;
+    height: 100%;
+}
+
+.auditing-main-content {
+}
+

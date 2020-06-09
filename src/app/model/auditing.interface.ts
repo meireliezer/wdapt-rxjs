@@ -1,4 +1,4 @@
-export enum AuditAction {
+export enum AuditType {
     Add,
     Edit,
     Delete
@@ -7,7 +7,8 @@ export enum AuditAction {
 
 export interface IAuditing {
     id: number;
-    action: AuditAction;
+    date: number;
+    action: AuditType;
     name: string;
     url: string;
 };

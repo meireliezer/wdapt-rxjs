@@ -23,7 +23,7 @@ export class AuditingService {
     this._auditing = new BehaviorSubject([]);
     this.auditing$ = this._auditing.asObservable();
 
-    this.loadActionsLog();
+  
   }
 
 
@@ -39,7 +39,7 @@ export class AuditingService {
 
   }
 
-  private loadActionsLog(){
+  public loadActionsLog(){
     this.http.get('api/auditing').pipe(
       map( res => res['payload'])
     )

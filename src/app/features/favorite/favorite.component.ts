@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { FavoritesService } from './services/favorites.service';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTable, faTh } from '@fortawesome/free-solid-svg-icons';
 import { DialogService } from 'src/app/core/dialog/dialog.service';
 import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
-import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
-import { fromEvent } from 'rxjs';
-import { debounce, debounceTime, throttleTime, map, distinctUntilChanged } from 'rxjs/operators';
+import { fromEvent, Subscription } from 'rxjs';
+import {  debounceTime, map, distinctUntilChanged, filter } from 'rxjs/operators';
 import { FilterService } from './services/filter.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 
 export interface IDialogConfig {
@@ -20,21 +20,30 @@ export interface IDialogConfig {
   templateUrl: './favorite.component.html',
   styleUrls: ['./favorite.component.css']
 })
-export class FavoriteComponent implements OnInit {
+export class FavoriteComponent implements OnInit, OnDestroy {
+
 
   public faSearchIcon = faSearch;
+  public faGridIcon = faTable;
+  public faTilesIcon = faTh;
+  public isGridView = false;
 
   @ViewChild('websiteFilter', {read:ElementRef, static: true})
   public websiteFilterElem:ElementRef;
 
-  constructor(private favoritesService: FavoritesService,
+  private subscription: Subscription;
+
+
+  constructor(private router: Router,
+              private favoritesService: FavoritesService,
               private dialogService: DialogService, 
               private filterService: FilterService) {
   }
+ 
 
   ngOnInit() {       
-    console.log(this.websiteFilterElem);
-    fromEvent(this.websiteFilterElem.nativeElement, 'keyup').pipe(
+    
+    this.subscription = fromEvent(this.websiteFilterElem.nativeElement, 'keyup').pipe(
       debounceTime(350),
       map( (keyboardEvent :KeyboardEvent ) => (<any>(keyboardEvent.target)).value.trim()),
       distinctUntilChanged() 
@@ -42,6 +51,22 @@ export class FavoriteComponent implements OnInit {
     .subscribe( val =>
       this.filterService.setFilter(val)
     );
+
+
+    this.isGridView  = this.router.url.indexOf('grid') !== -1;      
+    let subscription = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd )
+    )
+    .subscribe((event:NavigationEnd)=> {
+      this.isGridView  = (event.url.indexOf('grid')!== -1);
+    });
+    this.subscription.add(subscription);
+
+  }
+
+
+  ngOnDestroy(): void {
+   this.subscription.unsubscribe();
   }
 
   public addWebsite(){

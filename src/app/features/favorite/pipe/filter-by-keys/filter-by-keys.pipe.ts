@@ -9,11 +9,6 @@ export class FilterByKeysPipe implements PipeTransform {
   // args[1] - Arry of keys to compore to
   transform(value: any, ...args: any[]): any {
 
-
-
-    console.log('FilterByKeysPipe', value);
-    console.log('FilterByKeysPipe', args)
-
     let filterPattern = args[0];
     let keys = args[1];
 

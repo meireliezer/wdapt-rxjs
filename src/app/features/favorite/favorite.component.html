@@ -8,8 +8,8 @@
             <fa-icon [icon]="faSearchIcon"></fa-icon>
         </div>
         <div class="favorites-toolbar__actions">
-            <button type="button" class="btn btn-outline-dark btn-sm m-1" routerLink="./grid" >Grid</button>
-            <button type="button" class="btn btn-outline-dark btn-sm m-1" routerLink="./tiles"  >Tiles</button>
+            <button type="button" class="btn btn-outline-dark btn-sm m-1" routerLink="./grid"  *ngIf="!isGridView" title="Grid View"><fa-icon [icon]="faGridIcon"></fa-icon></button>
+            <button type="button" class="btn btn-outline-dark btn-sm m-1" routerLink="./tiles"  *ngIf="isGridView" title="Tiles View"><fa-icon [icon]="faTilesIcon"></fa-icon></button>
             <button type="button" class="btn btn-outline-dark btn-sm m-1"
                 (click)="addWebsite()"
             >Add</button>      

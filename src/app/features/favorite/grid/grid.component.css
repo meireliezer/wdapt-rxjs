@@ -1,0 +1,15 @@
+.float-toolbar {
+    visibility:hidden;        
+    display: flex;
+    justify-content: flex-end;
+}
+
+tr:hover .float-toolbar {
+    visibility: visible;
+}
+
+.float-toolbar__action{
+    margin-left: 0.3em;
+    cursor: pointer;
+}
+

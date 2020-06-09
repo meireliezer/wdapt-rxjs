@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FavoritesService } from './services/favorites.service';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { DialogService } from 'src/app/core/dialog/dialog.service';
 import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
 import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
+import { fromEvent } from 'rxjs';
+import { debounce, debounceTime, throttleTime, map, distinctUntilChanged } from 'rxjs/operators';
+import { FilterService } from './services/filter.service';
 
 
 export interface IDialogConfig {
@@ -21,11 +24,24 @@ export class FavoriteComponent implements OnInit {
 
   public faSearchIcon = faSearch;
 
+  @ViewChild('websiteFilter', {read:ElementRef, static: true})
+  public websiteFilterElem:ElementRef;
+
   constructor(private favoritesService: FavoritesService,
-              private dialogService: DialogService) {
+              private dialogService: DialogService, 
+              private filterService: FilterService) {
   }
 
   ngOnInit() {       
+    console.log(this.websiteFilterElem);
+    fromEvent(this.websiteFilterElem.nativeElement, 'keyup').pipe(
+      debounceTime(350),
+      map( (keyboardEvent :KeyboardEvent ) => (<any>(keyboardEvent.target)).value.trim()),
+      distinctUntilChanged() 
+    )
+    .subscribe( val =>
+      this.filterService.setFilter(val)
+    );
   }
 
   public addWebsite(){

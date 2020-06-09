@@ -8,6 +8,7 @@ import { FavoritesService } from '../services/favorites.service';
 import { DialogService } from 'src/app/core/dialog/dialog.service';
 import { EditDialogComponent } from '../dialogs/edit-dialog/edit-dialog.component';
 import { GeneralDialogComponent, IGeneralDialogData } from 'src/app/share/general-dialog/general-dialog/general-dialog.component';
+import { FilterService } from '../services/filter.service';
 
 
 
@@ -20,12 +21,16 @@ import { GeneralDialogComponent, IGeneralDialogData } from 'src/app/share/genera
 export class GridComponent implements OnInit {
 
   public favorites$: Observable<IFavoriteWebSite[]>;
+  public filter$: Observable<string>;
   public faEdit = faEdit;
   public faTrash = faTrash;
 
   constructor(private favoritesService: FavoritesService,
-              private dialogService:DialogService) {
+              private dialogService:DialogService,
+              private filterService:FilterService) {
+
     this.favorites$ = this.favoritesService.favorites$;
+    this.filter$ = this.filterService.filter$;
    }
 
   ngOnInit() {

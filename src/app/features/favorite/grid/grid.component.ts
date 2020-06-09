@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { FavoritesService } from '../services/favorites.service';
 import { DialogService } from 'src/app/core/dialog/dialog.service';
 import { EditDialogComponent } from '../dialogs/edit-dialog/edit-dialog.component';
+import { GeneralDialogComponent, IGeneralDialogData } from 'src/app/share/general-dialog/general-dialog/general-dialog.component';
 
 
 
@@ -28,7 +29,6 @@ export class GridComponent implements OnInit {
    }
 
   ngOnInit() {
-    
   }
 
   public onEdit(favorite:IFavoriteWebSite){
@@ -50,7 +50,28 @@ export class GridComponent implements OnInit {
   }
 
   public onDelete(favorite:IFavoriteWebSite){
-    console.log(favorite);
+    let data:IGeneralDialogData = {
+        title: 'Remove favorite website?',
+        content:'This action will remove the favorite website parmanently',
+        okBtnLabel:'Remove website',
+        cancelBtnLabel:'Cancel'
+    }
+    this.dialogService.open(GeneralDialogComponent, data)
+    .subscribe (
+        val => {
+          if(val ===  true){
+            // Delete item
+            this.favoritesService.remove(favorite.id)
+            .subscribe(_=>  this.dialogService.close());
+
+           
+          } else {
+
+            this.dialogService.close();
+          }
+        }
+
+    )
   }
 
   public trackByFn(favorite: IFavoriteWebSite){

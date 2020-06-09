@@ -34,6 +34,11 @@
      flex-direction: column;
      margin: 0.75em;
  }
+
+ .me-font-noraml{
+     font-size: medium;
+     font-weight: normal;
+ }
  .me-dialog-footer {
      display: flex;
      justify-content: space-evenly;

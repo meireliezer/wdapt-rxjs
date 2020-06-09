@@ -1,0 +1,17 @@
+<div class="me-from-background">
+    <div class="me-dialog font-weight-bold">
+        <div class="me-dialog-header">
+            {{data?.title}}
+        </div>
+        <div class="me-dialog-content">
+            <div class="me-font-noraml">{{data?.content}}</div>
+        </div>
+        <div class="me-dialog-footer">
+            <button class="btn btn-outline-dark font-weight-bold"             
+            (click)="onOk()"
+            >{{data?.okBtnLabel}}</button>
+            <button class="btn btn-outline-dark font-weight-bold"
+            (click)="onCancel()">{{data?.cancelBtnLabel}}</button>
+        </div>
+    </div>
+</div>

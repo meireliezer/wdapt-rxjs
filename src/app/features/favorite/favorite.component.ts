@@ -25,14 +25,10 @@ export class FavoriteComponent implements OnInit {
               private dialogService: DialogService) {
   }
 
-  ngOnInit() {   
-   // setTimeout(()=>this.dialogService.open(EditDialogComponent), 1000);
-    
+  ngOnInit() {       
   }
 
   public addWebsite(){
-
-
     this.dialogService.open(AddDialogComponent).subscribe( val => {
 
       if(val === null){
@@ -49,7 +45,6 @@ export class FavoriteComponent implements OnInit {
       }
 
     })
-
   }
 
 }

@@ -45,6 +45,20 @@ export class FavoritesService {
   }
 
 
+  public remove(id: number) :Observable<any>{
+    return this.http.delete('api/favorites', id).pipe(
+      tap( ()=> {
+        let items = this._subject.value;
+        let itemIdx = this._subject.value.findIndex(item => item.id === id);
+        if(itemIdx !== -1){
+          let newList = [...this._subject.value];
+          newList.splice(itemIdx, 1);
+          this._subject.next([...newList]);
+        }
+      })      
+    )
+  }
+
   private loadFavorites(): void{
 
     this.http.get('api/favorites').pipe(                  

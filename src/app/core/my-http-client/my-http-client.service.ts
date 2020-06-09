@@ -97,4 +97,16 @@ export class MyHttpClientService {
     );
   }
 
+  public delete(api:string, id: number): Observable<any> {
+    if(api === 'api/favorites'){
+      let index = FAVORITE_WEBSITES.findIndex(item=> item.id === id);
+      FAVORITE_WEBSITES.splice(index, 1);    
+    }
+
+    return of({}).pipe(
+      take(1),
+      delay(Math.random()*3000)
+    );
+  }
+
 }

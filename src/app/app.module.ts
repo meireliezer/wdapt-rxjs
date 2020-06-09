@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeroesComponent } from './heroes/heroes.component';
 import { AddDialogComponent } from './features/favorite/dialogs/add-dialog/add-dialog.component';
 import { EditDialogComponent } from './features/favorite/dialogs/edit-dialog/edit-dialog.component';
+import { GeneralDialogComponent } from './share/general-dialog/general-dialog/general-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     AddDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    GeneralDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { EditDialogComponent } from './features/favorite/dialogs/edit-dialog/edi
   bootstrap: [AppComponent],
   entryComponents: [
     AddDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    GeneralDialogComponent
   ],
 })
 export class AppModule { }

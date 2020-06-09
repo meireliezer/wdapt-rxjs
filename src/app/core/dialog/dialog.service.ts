@@ -31,6 +31,7 @@ export class DialogService {
 
   public open(comp: any, data?:any): Observable<any>{
 
+  
     if(this._active){
       return;
     }

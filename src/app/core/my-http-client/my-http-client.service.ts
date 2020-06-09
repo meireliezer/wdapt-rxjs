@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 import { Observable, of } from 'rxjs';
 import { delay, tap, take } from 'rxjs/operators'
+import { IAuditing, AuditAction } from 'src/app/model/auditing.interface';
 
 const FAVORITE_WEBSITES:IFavoriteWebSite[] = [
   {
@@ -33,6 +34,34 @@ let favoriteNextIndex = FAVORITE_WEBSITES.length + 1;
 
 
 
+const ACTIONS_LOG:IAuditing[] = [
+  {
+    id: 1,
+    action: AuditAction.Add,
+    name: 'ynet',
+    url:'ynet.co.il',
+    
+  },
+  {
+    id: 2,
+    action: AuditAction.Add,
+    name: 'cnn',
+    url:'cnn.com'
+  },
+  {
+    id: 3,
+    action: AuditAction.Add,
+    name: 'walla',
+    url:'walla.co.il'
+  },
+  {
+    id: 4,
+    action: AuditAction.Add,
+    name: 'gymshark',
+    url:'gymshark.com'
+  }
+]
+let actionsLogNextIndex = ACTIONS_LOG.length + 1;
 
 
 @Injectable({
@@ -49,7 +78,11 @@ export class MyHttpClientService {
     if(api === 'api/favorites'){
       data = {
         payload: [...FAVORITE_WEBSITES]
-      }
+      };
+    } else if( api === 'api/auditing'){
+      data = {
+        payload: [...ACTIONS_LOG]
+      };
     }
 
     return of(data).pipe(    

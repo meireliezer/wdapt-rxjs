@@ -12,6 +12,13 @@
                 <th cope="col">Wbsite name</th>
                 <th cope="col">URL</th>
             </thead>
+                <tr *ngFor="let audit of (auditing$ | async)">
+                    <td>{{audit.id}}</td>
+                    <td>{{audit.action}}</td>
+                    <td>{{audit.name}}</td>
+                    <td>{{audit.url}}</td>
+                </tr>
+
             <tbody>
             </tbody>
         </table>        

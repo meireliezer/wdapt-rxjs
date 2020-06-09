@@ -8,12 +8,14 @@ import { FavoriteComponent } from './favorite.component';
 import { GridComponent } from './grid/grid.component';
 import { TilesComponent } from './tiles/tiles.component';
 import { FavoritesService } from './services/favorites.service';
+import { FilterByKeysPipe } from './pipe/filter-by-keys/filter-by-keys.pipe';
 
 @NgModule({
   declarations: [
     FavoriteComponent,
     GridComponent,
-    TilesComponent   
+    TilesComponent,
+    FilterByKeysPipe   
   ],
   imports: [
     CommonModule,

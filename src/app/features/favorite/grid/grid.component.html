@@ -6,7 +6,7 @@
         <th cope="col">Action</th>
     </thead>
     <tbody>
-        <tr *ngFor="let favorite of (favorites$|async); trackBy: trackByFn">           
+        <tr *ngFor="let favorite of (favorites$|async) | filterByKeys:(filter$ |async):['url','name']; trackBy: trackByFn">           
             <td >{{favorite.name}}</td>
             <td >{{favorite.url}}</td>
             <td>  

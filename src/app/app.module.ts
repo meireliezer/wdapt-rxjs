@@ -16,7 +16,8 @@ import { GeneralDialogComponent } from './share/general-dialog/general-dialog/ge
     HeroesComponent,
     AddDialogComponent,
     EditDialogComponent,
-    GeneralDialogComponent
+    GeneralDialogComponent,
+
   ],
   imports: [
     BrowserModule,

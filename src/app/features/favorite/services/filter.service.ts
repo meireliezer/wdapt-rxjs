@@ -16,7 +16,6 @@ export class FilterService {
   }
 
   public setFilter(filter: string){
-    console.log('setFilter:', filter);
     this._filter.next(filter);
   }
 

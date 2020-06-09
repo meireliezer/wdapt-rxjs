@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IAuditing, AuditAction } from 'src/app/model/auditing.interface';
+import { IAuditing } from 'src/app/model/auditing.interface';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 import { MyHttpClientService } from '../my-http-client/my-http-client.service';
@@ -25,20 +25,7 @@ export class AuditingService {
 
   
   }
-
-
-  public addWebsite(website: IFavoriteWebSite){
-
-  }
-
-  public editWebsite(website:IFavoriteWebSite){
-
-  }
-
-  public removeWebsite(website:IFavoriteWebSite){
-
-  }
-
+  
   public loadActionsLog(){
     this.http.get('api/auditing').pipe(
       map( res => res['payload'])

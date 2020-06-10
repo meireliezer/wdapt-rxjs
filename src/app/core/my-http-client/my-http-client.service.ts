@@ -9,25 +9,25 @@ const FAVORITE_WEBSITES:IFavoriteWebSite[] = [
     id: 1,
     name: 'ynet',
     url:'ynet.co.il',
-    img: ''
+    img: 'http://unsplash.it/300/200'
   },
   {
     id: 2,
     name: 'cnn',
     url:'cnn.com',
-    img: ''
+    img: 'http://unsplash.it/300/200'
   },
   {
     id: 3,
     name: 'walla',
     url:'walla.co.il',
-    img: ''
+    img: 'http://unsplash.it/300/200'
   },
   {
     id: 4,
     name: 'gymshark',
     url:'gymshark.com',
-    img: ''
+    img: 'http://unsplash.it/300/200'
   }
 ]
 let favoriteNextIndex = FAVORITE_WEBSITES.length + 1;
@@ -104,7 +104,7 @@ export class MyHttpClientService {
     if(api === 'api/favorites'){
       data = { ...req,
               id: favoriteNextIndex,
-              img: ''
+              img: 'http://unsplash.it/300/200'
        };
        ++favoriteNextIndex;
       

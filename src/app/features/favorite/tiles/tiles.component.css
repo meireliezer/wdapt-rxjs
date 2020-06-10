@@ -1,0 +1,40 @@
+.tiles-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+.me-card {
+    position: initial;
+    margin: 5px;
+    width: calc(25% - 10px);
+}
+
+@media  (max-width: 950px) {
+    .me-card {
+        width: calc(33% - 10px);
+    }
+}
+@media  (max-width: 750px) {
+    .me-card {
+        width: calc(50% - 10px);
+    }
+}
+
+.card-body, .card-title, .card-text {
+    padding: 0;
+    margin: 0;
+}
+
+.float-toolbar__action {
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px;
+    visibility: hidden;
+}
+
+.float-toolbar__action:hover{
+    background-color: rgba(128, 128, 128, 0.233);
+}
+
+.card:hover .float-toolbar__action{
+    visibility: visible;
+}

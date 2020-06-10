@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 import { FavoritesService } from '../services/favorites.service';
 
@@ -10,6 +11,8 @@ import { FavoritesService } from '../services/favorites.service';
 })
 export class TilesComponent implements OnInit {
 
+  public faEdit = faEdit;
+  public faTrash = faTrash;
   public favorites$: Observable<IFavoriteWebSite[]>;
 
   constructor(private favoritesService: FavoritesService) {

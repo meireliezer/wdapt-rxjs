@@ -22,3 +22,11 @@
     padding-left: 0.2em;
 }
 
+@media (max-width: 660px){
+    .favorites-main__toolbar {
+        flex-direction: column;
+    }
+    .favorites-toolbar__search{
+        margin-left: initial;
+    }
+}

@@ -5,6 +5,8 @@
     height: 100%;
 }
 
-.auditing-main-content {
+@media (max-width: 660px){
+    .auditing-main__toolbar {
+        flex-direction: column;
+    }
 }
-

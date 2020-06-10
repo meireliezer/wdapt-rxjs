@@ -1,5 +1,5 @@
 <div class="tiles-items">
-    <div *ngFor="let favorite of (favorites$|async)"
+    <div *ngFor="let favorite of (favorites$|async); trackBy: trackByFn"
             class="card text-center me-card">
         <img [src]="favorite.img" class="card-img-top" alt="">              
         <div class="card-body">

@@ -1,6 +1,7 @@
 <div class="tiles-items">
-    <div *ngFor="let favorite of (favorites$|async); trackBy: trackByFn"
-            class="card text-center me-card">
+    <div *ngFor="let favorite of (favorites$|async)| filterByKeys:(filter$ |async):['url','name']; trackBy: trackByFn"
+            class="card text-center me-card"
+            (click)="onDetail($event, favorite)">
         <img [src]="favorite.img" class="card-img-top" alt="">              
         <div class="card-body">
             <h5 class="card-title">{{favorite.name}}</h5>

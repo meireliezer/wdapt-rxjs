@@ -7,6 +7,7 @@ import { EditDialogComponent } from '../dialogs/edit-dialog/edit-dialog.componen
 import { DialogService } from 'src/app/core/dialog/dialog.service';
 import { FilterService } from '../services/filter.service';
 import { IGeneralDialogData, GeneralDialogComponent } from 'src/app/share/general-dialog/general-dialog/general-dialog.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tiles',
@@ -18,11 +19,15 @@ export class TilesComponent implements OnInit {
   public faEdit = faEdit;
   public faTrash = faTrash;
   public favorites$: Observable<IFavoriteWebSite[]>;
+  public filter$: Observable<string>;
 
-  constructor(private favoritesService: FavoritesService,
-    private dialogService:DialogService,
-    private filterService:FilterService) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private favoritesService: FavoritesService,
+              private dialogService:DialogService,
+              private filterService:FilterService) {
     this.favorites$ = this.favoritesService.favorites$;
+    this.filter$ = this.filterService.filter$;
    }
 
   ngOnInit() {
@@ -59,15 +64,11 @@ export class TilesComponent implements OnInit {
           if(val ===  true){
             // Delete item
             this.favoritesService.remove(favorite.id)
-            .subscribe(_=>  this.dialogService.close());
-
-           
+            .subscribe(_=>  this.dialogService.close());           
           } else {
-
             this.dialogService.close();
           }
         }
-
     )
   }
 
@@ -75,4 +76,20 @@ export class TilesComponent implements OnInit {
     return favorite.id;
   }
 
+
+  public onDetail(mouseEvent:MouseEvent, favorite: IFavoriteWebSite){
+    console.log(mouseEvent);
+    let actionIem  =(<any>(mouseEvent.target)).closest('.float-toolbar__action');
+    if(actionIem){
+      mouseEvent.stopPropagation();   
+      return ;
+    }
+        
+    let data = {
+      favorite: favorite,
+      origin: 'tiles'
+    }
+
+    this.router.navigate(['../', favorite.id],{ relativeTo: this.route, state:{data} });
+  }
 }

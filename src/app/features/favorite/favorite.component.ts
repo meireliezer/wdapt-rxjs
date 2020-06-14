@@ -7,6 +7,7 @@ import { fromEvent, Subscription } from 'rxjs';
 import {  debounceTime, map, distinctUntilChanged, filter } from 'rxjs/operators';
 import { FilterService } from './services/filter.service';
 import { Router, NavigationEnd } from '@angular/router';
+import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 
 
 export interface IDialogConfig {
@@ -68,6 +69,7 @@ export class FavoriteComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
    this.subscription.unsubscribe();
+   this.filterService.setFilter('');
   }
 
   public addWebsite(){
@@ -88,5 +90,7 @@ export class FavoriteComponent implements OnInit, OnDestroy {
 
     })
   }
+
+
 
 }

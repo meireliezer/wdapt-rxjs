@@ -9,6 +9,7 @@ import { DialogService } from 'src/app/core/dialog/dialog.service';
 import { EditDialogComponent } from '../dialogs/edit-dialog/edit-dialog.component';
 import { GeneralDialogComponent, IGeneralDialogData } from 'src/app/share/general-dialog/general-dialog/general-dialog.component';
 import { FilterService } from '../services/filter.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -28,13 +29,17 @@ export class GridComponent implements OnInit {
 
   constructor(private favoritesService: FavoritesService,
               private dialogService:DialogService,
-              private filterService:FilterService) {
+              private filterService:FilterService,
+              private route: ActivatedRoute,
+              private router: Router) {
 
     this.favorites$ = this.favoritesService.favorites$;
     this.filter$ = this.filterService.filter$;
    }
 
   ngOnInit() {
+    this.route.data.subscribe(console.log)
+
   }
 
   public onEdit(favorite:IFavoriteWebSite){
@@ -82,5 +87,21 @@ export class GridComponent implements OnInit {
 
   public trackByFn(favorite: IFavoriteWebSite){
     return favorite.id;
+  }
+
+  public onDetail(mouseEvent:MouseEvent, favorite: IFavoriteWebSite){
+    console.log(mouseEvent);
+    let actionIem  =(<any>(mouseEvent.target)).closest('.float-toolbar__action');
+    if(actionIem){
+      mouseEvent.stopPropagation();   
+      return ;
+    }
+        
+    let data = {
+      favorite: favorite,
+      origin: 'grid'
+    }
+
+    this.router.navigate(['../', favorite.id],{ relativeTo: this.route, state:{data} });
   }
 }

@@ -1,0 +1,33 @@
+
+
+
+<div class="container">
+    <div class="card  text-center">
+        <div class="card-header">
+            {{favorite.name}}
+        </div>
+        
+        <div class="card-body">      
+            <img class="card-text" 
+                [src]="favorite.img">                            
+            <div class="card-subtitle mt-2">
+                {{favorite.url}}
+            </div>
+            <div class="card-subtitle mt-2">
+                id:{{favorite.id}}
+            </div>          
+        </div>
+
+        <div class="card-footer">
+            <button  class="btn btn-primary" 
+                (click)="back()"
+                 >Back to {{backTo}}
+            </button>
+          </div>
+
+
+    </div>
+  
+</div>
+
+

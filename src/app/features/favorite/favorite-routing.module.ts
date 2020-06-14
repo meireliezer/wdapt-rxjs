@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FavoriteComponent } from './favorite.component';
 import { GridComponent } from './grid/grid.component';
 import { TilesComponent } from './tiles/tiles.component';
+import { FavoriteItemComponent } from './favorite-item/favorite-item.component';
 
 const routes: Routes = [
   { 
@@ -12,20 +13,23 @@ const routes: Routes = [
     children: [
       { 
         path: '', 
-        redirectTo: 'grid'
+        redirectTo: 'grid'        
       },
       { 
         path: 'grid', 
-        component: GridComponent
+        component: GridComponent,
+        data:{ a:1}, 
       },
       { 
       path: 'tiles', 
       component: TilesComponent
       },
+      {
+        path: ':id',
+        component: FavoriteItemComponent
+      }
     ]
   },
-
-
 ];
 
 @NgModule({

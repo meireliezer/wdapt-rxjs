@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { IDialog } from 'src/app/model/dialog.interface';
@@ -6,7 +6,8 @@ import { IDialog } from 'src/app/model/dialog.interface';
 @Component({
   selector: 'app-add-dialog',
   templateUrl: './add-dialog.component.html',
-  styleUrls: ['./add-dialog.component.css']
+  styleUrls: ['./add-dialog.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddDialogComponent implements OnInit, IDialog {
 

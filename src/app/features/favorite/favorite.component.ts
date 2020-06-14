@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FavoritesService } from './services/favorites.service';
 import { faSearch, faTable, faTh } from '@fortawesome/free-solid-svg-icons';
 import { DialogService } from 'src/app/core/dialog/dialog.service';
@@ -18,7 +18,8 @@ export interface IDialogConfig {
 @Component({
   selector: 'app-favorite',
   templateUrl: './favorite.component.html',
-  styleUrls: ['./favorite.component.css']
+  styleUrls: ['./favorite.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FavoriteComponent implements OnInit, OnDestroy {
 

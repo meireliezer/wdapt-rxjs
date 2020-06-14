@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { IDialog } from 'src/app/model/dialog.interface';
 import { Observable } from 'rxjs/internal/Observable';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -8,7 +8,8 @@ import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
 @Component({
   selector: 'app-edit-dialog',
   templateUrl: './edit-dialog.component.html',
-  styleUrls: ['./edit-dialog.component.css']
+  styleUrls: ['./edit-dialog.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditDialogComponent implements OnInit, IDialog {
   

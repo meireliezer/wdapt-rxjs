@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ViewContainerRef, ChangeDetectionStrategy } from '@angular/core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from './core/dialog/dialog.service';
@@ -6,7 +6,8 @@ import { DialogService } from './core/dialog/dialog.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements AfterViewInit {
   

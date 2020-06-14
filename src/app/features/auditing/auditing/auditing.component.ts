@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { IAuditing, AuditType } from 'src/app/model/auditing.interface';
 import { Observable } from 'rxjs/internal/Observable';
 import { AuditingService } from 'src/app/core/auditing/auditing.service';
@@ -6,7 +6,8 @@ import { AuditingService } from 'src/app/core/auditing/auditing.service';
 @Component({
   selector: 'app-auditing',
   templateUrl: './auditing.component.html',
-  styleUrls: ['./auditing.component.css']
+  styleUrls: ['./auditing.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuditingComponent implements OnInit {
 

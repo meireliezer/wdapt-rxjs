@@ -16,6 +16,8 @@ export class EditDialogComponent implements OnInit, IDialog {
   public form: FormGroup;
   public onOk$: Observable<any>;
   public onCancel$: Observable<any>;
+  public inProgress: boolean;
+
 
   public data:IFavoriteWebSite;
 
@@ -28,6 +30,8 @@ export class EditDialogComponent implements OnInit, IDialog {
 
     this._onCancel = new  Subject();
     this.onCancel$ = this._onCancel.asObservable();
+
+    this.inProgress = false;
    }
 
 
@@ -44,6 +48,7 @@ export class EditDialogComponent implements OnInit, IDialog {
   }
 
   public onSubmit(){    
+    this.inProgress = true;
     this._onOk.next(this.form.value);
   }
 

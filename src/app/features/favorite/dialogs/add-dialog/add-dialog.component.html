@@ -1,22 +1,34 @@
 
 <div class="me-from-background">
-    <form [formGroup]="form" class="me-dialog font-weight-bold" novalidation autocomplete="off">
-        <div class="me-dialog-header">
-            Add a new website
+    <form 
+        [formGroup]="form"              
+        class="me-dialog font-weight-bold" 
+        novalidation autocomplete="off">
+        <div class="progress"
+            [ngClass]="{'in-progress':inProgress}">
+            <span class="spinner-border" role="status" aria-hidden="true"></span>
         </div>
-        <div class="me-dialog-content">
-            <label for="websitename" >Website name <span class="asterisk" *ngIf="form.controls.website.errors?.required">*</span></label> 
-            <input type="text" id="websitename" formControlName="website">
-            <label for="url">URL  <span class="asterisk" *ngIf="form.controls.url.errors?.required">*</span></label>
-            <input type="text" id="url" formControlName="url">
-        </div>
-        <div class="me-dialog-footer">
-            <button class="btn btn-outline-dark font-weight-bold" 
-            [disabled]="!form.valid"
-            (click)="onSubmit()"
-            >Add website</button>
-            <button class="btn btn-outline-dark font-weight-bold"
-            (click)="onCancel()">Cancel</button>
-        </div>
+        
+        <fieldset [disabled]="inProgress"> 
+            <div class="me-dialog-header">
+                Add a new website
+            </div>
+            <div class="me-dialog-content" >
+                <label for="websitename" >Website name <span class="asterisk" *ngIf="form.controls.website.errors?.required">*</span></label> 
+                <input type="text" id="websitename" formControlName="website">
+                <label for="url">URL  <span class="asterisk" *ngIf="form.controls.url.errors?.required">*</span></label>
+                <input type="text" id="url" formControlName="url">
+            </div>
+            <div class="me-dialog-footer">
+                <button class="btn btn-outline-dark font-weight-bold" 
+                [disabled]="!form.valid"
+                (click)="onSubmit()">
+                <span>Add website</span>
+            </button>
+                <button class="btn btn-outline-dark font-weight-bold"
+                (click)="onCancel()"
+                >Cancel</button>
+            </div>
+        </fieldset>
     </form>
 </div>

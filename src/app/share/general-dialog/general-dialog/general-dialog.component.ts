@@ -19,6 +19,7 @@ export class GeneralDialogComponent implements OnInit, IDialog {
   public readonly onOk$: import("rxjs").Observable<any>;
   public readonly onCancel$: import("rxjs").Observable<any>;
   public data: IGeneralDialogData;
+  public inProgress: boolean;
 
 
   private _onOk: Subject<any>;
@@ -31,12 +32,15 @@ export class GeneralDialogComponent implements OnInit, IDialog {
 
     this._onCancel = new Subject();
     this.onCancel$ = this._onCancel.asObservable();
+
+    this.inProgress = false;
   }
 
   ngOnInit() {
   }
 
   public onOk(){
+    this.inProgress = true;
     this._onOk.next(true);
   }
 

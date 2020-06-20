@@ -64,6 +64,8 @@ export class FavoriteComponent implements OnInit, OnDestroy {
     });
     this.subscription.add(subscription);
 
+
+
   }
 
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
-import { Observable, of } from 'rxjs';
-import { delay, tap, take } from 'rxjs/operators'
+import { Observable, of, observable, throwError } from 'rxjs';
+import { delay, tap, take, switchMap } from 'rxjs/operators'
 import { IAuditing, AuditType } from 'src/app/model/auditing.interface';
 
 const FAVORITE_WEBSITES:IFavoriteWebSite[] = [
@@ -93,6 +93,14 @@ export class MyHttpClientService {
       take(1),  
       tap (val => {
         console.log('get(api/favorites)', val)
+      }),
+      switchMap( obs => {
+        let random = Math.random();
+        if((random < 0.5) && (api === 'api/favorites') ) {
+          console.error('throwError',random);
+          return throwError('throwError')
+        } 
+        return of(obs);
       })
     );    
   }

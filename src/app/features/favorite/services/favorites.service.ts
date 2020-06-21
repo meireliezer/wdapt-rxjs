@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
-import { tap, map, shareReplay } from 'rxjs/operators';
+import { Observable, BehaviorSubject, Subject, of, timer } from 'rxjs';
+import { tap, map, shareReplay, catchError, retryWhen, delayWhen, retry, take } from 'rxjs/operators';
 
 import { MyHttpClientService } from 'src/app/core/my-http-client/my-http-client.service';
 import { IFavoriteWebSite } from 'src/app/model/favorite-website.interface';
@@ -62,10 +62,39 @@ export class FavoritesService {
   private loadFavorites(): void{
 
     this.http.get('api/favorites').pipe(                  
-      map( res => res['payload']),
+      map( res => res['payload']),          
+      // Option1  - catch and return empty data
+      // catchError( err => {
+      //   console.log('catchError:', err);
+      //  // return of([])
+      //  return of([ {
+      //   id: 1,
+      //   name: 'Stub',
+      //   url:'stub.co.il',
+      //   img: 'http://unsplash.it/300/200'
+      // }])
+      // }),
+
+      // Option 2 - retry
+     //retry(3),
+
+      // // Option 3 - retryWhen
+      retryWhen(errors =>
+        errors.pipe(
+          //log error message
+          tap(val => console.log(`The error ${val} <--s`)),
+          //restart in 6 seconds
+          delayWhen(val => timer(3000))
+        )
+      ),
+
       tap( res => this._subject.next(res)),
+
+
     )
-    .subscribe()
+    .subscribe((val)=> console.log('loadFavorites got:', val), 
+    (err)=> console.error('loadFavorites got error:', err),
+    ()=> console.info('loadFavorites got complete'))
   }
 
 }
